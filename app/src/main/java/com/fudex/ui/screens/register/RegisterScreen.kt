@@ -1,4 +1,4 @@
-package com.fudex.ui.screens.login
+package com.fudex.ui.screens.register
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Visibility
@@ -44,18 +44,21 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(
+fun RegisterScreen(
     modifier: Modifier = Modifier,
-    viewModel: LoginViewModel = hiltViewModel(),
+    viewModel: RegisterViewModel = hiltViewModel(),
     navToHome: () -> Unit,
-    navToRegister: () -> Unit
+    navToLogin: () -> Unit
 ){
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
+    var confirmPasswordVisible by remember { mutableStateOf(false) }
     val interactionSource = remember { MutableInteractionSource() }
 
     val backgroundColor = MaterialTheme.colorScheme.background
@@ -78,7 +81,7 @@ fun LoginScreen(
         ) {
             // Título
             Text(
-                text = "Login",
+                text = "Register",
                 style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Bold),
                 color = onBackground,
                 modifier = Modifier.padding(bottom = 32.dp)
@@ -119,13 +122,44 @@ fun LoginScreen(
                     .padding(bottom = 24.dp),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password,
-                    imeAction = ImeAction.Done
+                    imeAction = ImeAction.Next
                 ),
                 leadingIcon = { Icon(Icons.Default.Lock, contentDescription = null, tint = primaryColor) },
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     val image = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(image, contentDescription = null, tint = primaryColor)
+                    }
+                },
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = primaryColor,
+                    unfocusedBorderColor = onSurface.copy(alpha = 0.4f),
+                    cursorColor = primaryColor,
+                    containerColor = surfaceColor,
+                    focusedLabelColor = primaryColor,
+                    unfocusedLabelColor = onSurface.copy(alpha = 0.7f)
+                )
+            )
+
+            // Confirm password
+            OutlinedTextField(
+                value = confirmPassword,
+                onValueChange = { confirmPassword = it },
+                label = { Text("Confirm password", color = onSurface) },
+                singleLine = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 24.dp),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Done
+                ),
+                leadingIcon = { Icon(Icons.Default.Lock, contentDescription = null, tint = primaryColor) },
+                visualTransformation = if (confirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                trailingIcon = {
+                    val image = if (confirmPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff
+                    IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
                         Icon(image, contentDescription = null, tint = primaryColor)
                     }
                 },
@@ -151,7 +185,7 @@ fun LoginScreen(
                     contentColor = MaterialTheme.colorScheme.onPrimary
                 )
             ) {
-                Text("Login", style = MaterialTheme.typography.titleMedium)
+                Text("Register", style = MaterialTheme.typography.titleMedium)
             }
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -162,20 +196,22 @@ fun LoginScreen(
                     .clickable(
                         interactionSource = interactionSource,
                         indication = null
-                    ) { navToRegister() },
+                    ) { navToLogin() },
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "Register",
-                    color = primaryColor,
-                    style = MaterialTheme.typography.bodyLarge
-                )
+
                 Icon(
-                    imageVector = Icons.Default.ArrowForward,
-                    contentDescription = "Go to Register",
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "Go to Login",
                     tint = primaryColor,
                     modifier = Modifier.padding(start = 4.dp)
                 )
+                Text(
+                    text = "Login",
+                    color = primaryColor,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+
             }
         }
     }

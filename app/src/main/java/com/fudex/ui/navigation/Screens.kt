@@ -15,5 +15,6 @@ enum class Destination(
 
 
     LOGIN(route = Constants.NAV_LOGIN),
+    REGISTER(route = Constants.NAV_REGISTER),
 
 }

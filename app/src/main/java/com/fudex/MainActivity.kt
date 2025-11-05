@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalConfiguration
 import com.fudex.ui.screens.login.LoginScreen
+import com.fudex.ui.screens.register.RegisterScreen
 import com.fudex.ui.theme.FudexTheme
 import com.fudex.ui.theme.LocalFontScale
 import com.fudex.ui.theme.LocalPaddingScale
@@ -33,9 +34,13 @@ class MainActivity : ComponentActivity() {
                     LocalPaddingScale provides paddingScale,
                     LocalFontScale provides fontScale
                 ) {
-                    LoginScreen(
+//                    LoginScreen(
+//                        navToHome = {},
+//                        navToRegister = {}
+//                    )
+                    RegisterScreen (
                         navToHome = {},
-                        navToRegister = {}
+                        navToLogin = {}
                     )
                     //NavigationBarScreen()
                 }
