@@ -1,47 +1,46 @@
 package com.fudex
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalConfiguration
+import com.fudex.ui.screens.login.LoginScreen
 import com.fudex.ui.theme.FudexTheme
+import com.fudex.ui.theme.LocalFontScale
+import com.fudex.ui.theme.LocalPaddingScale
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @SuppressLint("ConfigurationScreenWidthHeight")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             FudexTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                val configuration = LocalConfiguration.current
+                val screenWidth = configuration.screenWidthDp
+                val screenHeight = configuration.screenHeightDp
+
+                // Escalas adaptativas
+                val fontScale = screenWidth / 411f
+                val paddingScale = screenHeight / 891f
+
+                CompositionLocalProvider(
+                    LocalPaddingScale provides paddingScale,
+                    LocalFontScale provides fontScale
+                ) {
+                    LoginScreen(
+                        navToHome = {},
+                        navToRegister = {}
                     )
+                    //NavigationBarScreen()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FudexTheme {
-        Greeting("Android")
-    }
-}
