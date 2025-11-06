@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.fudex.ui.components.AppScaffold
+import com.fudex.ui.screens.home.HomeScreen
 
 fun NavGraphBuilder.deliveryNavGraph(navController: NavHostController) {
     navigation(
@@ -13,9 +14,9 @@ fun NavGraphBuilder.deliveryNavGraph(navController: NavHostController) {
     ) {
 
 
-//        composable("delivery_home"){
-//            HomeScreen("Delivery Home")
-//        }
+        composable("delivery_home"){
+            HomeScreen("Delivery Home")
+        }
 
 
 

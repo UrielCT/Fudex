@@ -141,7 +141,7 @@ fun LoginScreen(
 
             // Botón de Login
             Button(
-                onClick = { navToHome("Client") },
+                onClick = { navToHome("Restaurant") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),

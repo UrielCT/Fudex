@@ -34,7 +34,7 @@ fun RolesScreen(
     viewModel: RolesViewModel = hiltViewModel(),
     navToOrders: (String) -> Unit
 ){
-    val role by remember { mutableStateOf("Delivery") }
+    val role by remember { mutableStateOf("Restaurant") }
 
     val visibleRoles = remember(role) {
         if (role == "Restaurant") listOf("Restaurant", "Delivery", "Client")

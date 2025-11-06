@@ -49,7 +49,7 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController) {
             RolesScreen(
                 navToOrders = { selectedRole ->
                     when (selectedRole) {
-                        "Restaurant" -> navController.navigate(Destination.RESTAURANT_GRAPH) {
+                        "Restaurant" -> navController.navigate(Destination.RESTAURANT_GRAPH.route) {
                             popUpTo(Destination.AUTH_GRAPH.route) { inclusive = true }
                         }
                         "Delivery" -> navController.navigate(Destination.DELIVERY_GRAPH.route) {

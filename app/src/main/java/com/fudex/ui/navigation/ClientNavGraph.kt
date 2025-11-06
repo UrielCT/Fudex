@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.fudex.ui.components.AppScaffold
+import com.fudex.ui.screens.home.HomeScreen
 
 fun NavGraphBuilder.clientNavGraph(navController: NavHostController) {
     navigation(
@@ -12,9 +13,9 @@ fun NavGraphBuilder.clientNavGraph(navController: NavHostController) {
         route = Destination.CLIENT_GRAPH.route
     ) {
 
-//        composable("client_home"){
-//            HomeScreen("Client Home")
-//        }
+        composable("client_home"){
+            HomeScreen("Client Home")
+        }
 
 
 
