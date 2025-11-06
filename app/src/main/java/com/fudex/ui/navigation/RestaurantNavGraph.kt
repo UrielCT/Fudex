@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.fudex.ui.components.AppScaffold
 import com.fudex.ui.screens.home.HomeScreen
+import com.fudex.ui.screens.mycategories.MyCategoriesScreen
 import com.fudex.ui.screens.profile.ProfileScreen
 
 fun NavGraphBuilder.restaurantNavGraph(navController: NavHostController) {
@@ -16,7 +17,8 @@ fun NavGraphBuilder.restaurantNavGraph(navController: NavHostController) {
 
         composable("restaurant_home"){
             //HomeScreen("Restaurant Home")
-            ProfileScreen()
+            //ProfileScreen()
+            MyCategoriesScreen()
         }
 
 
