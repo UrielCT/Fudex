@@ -50,7 +50,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun RegisterScreen(
     modifier: Modifier = Modifier,
     viewModel: RegisterViewModel = hiltViewModel(),
-    navToHome: () -> Unit,
+    navToHome: (String) -> Unit,
     navToLogin: () -> Unit
 ){
 
@@ -175,7 +175,7 @@ fun RegisterScreen(
 
             // Botón de Login
             Button(
-                onClick = { navToHome() },
+                onClick = { navToHome("Client") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),

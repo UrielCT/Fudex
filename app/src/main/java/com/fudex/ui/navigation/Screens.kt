@@ -18,4 +18,11 @@ enum class Destination(
     REGISTER(route = Constants.NAV_REGISTER),
     ROLES(route = Constants.NAV_ROLES),
 
+    //ROLES
+
+    AUTH_GRAPH(route = Constants.NAV_AUTH_GRAPH),
+    CLIENT_GRAPH(route = Constants.NAV_CLIENT_GRAPH),
+    RESTAURANT_GRAPH(route = Constants.NAV_RESTAURANT_GRAPH),
+    DELIVERY_GRAPH(route = Constants.NAV_DELIVERY_GRAPH)
+
 }
