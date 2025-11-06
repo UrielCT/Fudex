@@ -1,11 +1,12 @@
 package com.fudex.utils
 
 object Constants {
-
-    const val NAV_HOME = "home"
     const val NAV_LOGIN = "login"
     const val NAV_REGISTER = "register"
     const val NAV_ROLES = "roles"
+    const val NAV_HOME = "home"
+    const val NAV_ORDERS = "orders"
+
 
 
     const val NAV_AUTH_GRAPH = "auth_graph"

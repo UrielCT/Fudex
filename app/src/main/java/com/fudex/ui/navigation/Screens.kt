@@ -11,12 +11,11 @@ enum class Destination(
 ) {
 
 
-
-
-
     LOGIN(route = Constants.NAV_LOGIN),
     REGISTER(route = Constants.NAV_REGISTER),
     ROLES(route = Constants.NAV_ROLES),
+    HOME(route = Constants.NAV_HOME),
+    ORDERS(route = Constants.NAV_ORDERS),
 
     //ROLES
 
