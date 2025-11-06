@@ -9,6 +9,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalConfiguration
 import com.fudex.ui.screens.login.LoginScreen
 import com.fudex.ui.screens.register.RegisterScreen
+import com.fudex.ui.screens.roles.RolesScreen
 import com.fudex.ui.theme.FudexTheme
 import com.fudex.ui.theme.LocalFontScale
 import com.fudex.ui.theme.LocalPaddingScale
@@ -38,9 +39,12 @@ class MainActivity : ComponentActivity() {
 //                        navToHome = {},
 //                        navToRegister = {}
 //                    )
-                    RegisterScreen (
-                        navToHome = {},
-                        navToLogin = {}
+//                    RegisterScreen (
+//                        navToHome = {},
+//                        navToLogin = {}
+//                    )
+                    RolesScreen (
+                        navToOrders = {}
                     )
                     //NavigationBarScreen()
                 }

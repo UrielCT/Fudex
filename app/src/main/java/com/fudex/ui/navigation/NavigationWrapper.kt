@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.fudex.ui.screens.login.LoginScreen
 import com.fudex.ui.screens.register.RegisterScreen
+import com.fudex.ui.screens.roles.RolesScreen
 
 @Composable
 fun Navigationwrapper(
@@ -31,6 +32,12 @@ fun Navigationwrapper(
             RegisterScreen (
                 navToHome = {},
                 navToLogin = {}
+            )
+        }
+
+        composable(Destination.ROLES.route) {
+            RolesScreen (
+                navToOrders = {},
             )
         }
 
