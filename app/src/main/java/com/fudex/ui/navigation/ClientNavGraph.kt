@@ -8,6 +8,7 @@ import com.fudex.ui.components.AppScaffold
 import com.fudex.ui.screens.directionMap.DirectionMapScreen
 import com.fudex.ui.screens.home.HomeScreen
 import com.fudex.ui.screens.newDirection.NewDirectionScreen
+import com.fudex.ui.screens.paymentConfirm.PaymentConfirmScreen
 import com.fudex.ui.screens.paymentMethod.PaymentMethodScreen
 
 fun NavGraphBuilder.clientNavGraph(navController: NavHostController) {
@@ -20,7 +21,8 @@ fun NavGraphBuilder.clientNavGraph(navController: NavHostController) {
             //HomeScreen("Client Home")
             //PaymentMethodScreen()
             //DirectionMapScreen()
-            NewDirectionScreen()
+            //NewDirectionScreen()
+            PaymentConfirmScreen()
         }
 
 
