@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.fudex.ui.components.AppScaffold
+import com.fudex.ui.screens.directionMap.DirectionMapScreen
 import com.fudex.ui.screens.home.HomeScreen
 import com.fudex.ui.screens.paymentMethod.PaymentMethodScreen
 
@@ -16,7 +17,8 @@ fun NavGraphBuilder.clientNavGraph(navController: NavHostController) {
 
         composable("client_home"){
             //HomeScreen("Client Home")
-            PaymentMethodScreen()
+            //PaymentMethodScreen()
+            DirectionMapScreen()
         }
 
 
