@@ -71,6 +71,8 @@ dependencies {
     implementation (libs.androidx.constraintlayout.compose)
     //carousel
     implementation ("com.google.accompanist:accompanist-pager:0.22.0-rc")
+    //coil
+    implementation ("io.coil-kt:coil-compose:2.4.0")
 
     // Testing
     testImplementation(libs.junit)
