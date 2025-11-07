@@ -7,6 +7,7 @@ import androidx.navigation.navigation
 import com.fudex.ui.components.AppScaffold
 import com.fudex.ui.screens.addEditCategory.AddEditCategoryScreen
 import com.fudex.ui.screens.home.HomeScreen
+import com.fudex.ui.screens.myProductDetail.MyProductDetailScreen
 import com.fudex.ui.screens.myProducts.MyProductsScreen
 import com.fudex.ui.screens.mycategories.MyCategoriesScreen
 import com.fudex.ui.screens.profile.ProfileScreen
@@ -22,7 +23,8 @@ fun NavGraphBuilder.restaurantNavGraph(navController: NavHostController) {
             //ProfileScreen()
             //MyCategoriesScreen()
             //AddEditCategoryScreen()
-            MyProductsScreen()
+            //MyProductsScreen()
+            MyProductDetailScreen()
         }
 
 
