@@ -66,6 +66,12 @@ dependencies {
     kapt(libs.hilt.compiler)
     kapt (libs.hilt.android.compiler)
 
+    // Extras
+    implementation(libs.androidx.exifinterface)
+    implementation (libs.androidx.constraintlayout.compose)
+    //carousel
+    implementation ("com.google.accompanist:accompanist-pager:0.22.0-rc")
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

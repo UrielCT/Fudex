@@ -8,6 +8,7 @@ espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.9.4"
 activityCompose = "1.9.2"#"1.11.0"
 composeBom = "2024.04.01"
+constraintlayoutCompose = "1.1.1"
 
 navigationRuntimeKtx = "2.8.8"
 navigationRuntimeAndroid = "2.9.0-alpha07"
@@ -16,6 +17,8 @@ navigationCompose = "2.8.2"
 hiltAndroid = "2.48"
 hiltAndroidCompiler = "2.48"
 hiltNavigationCompose = "1.1.0"
+
+exifinterface = "1.4.1"
 
 [libraries]
 # Core
@@ -41,6 +44,10 @@ androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-com
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltAndroid" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hiltAndroid" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
+
+# Extras
+androidx-exifinterface = { group = "androidx.exifinterface", name = "exifinterface", version.ref = "exifinterface" }
+androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
 
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
