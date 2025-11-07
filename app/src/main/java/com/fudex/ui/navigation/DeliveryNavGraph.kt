@@ -9,6 +9,7 @@ import com.fudex.ui.screens.editProfile.EditProfileScreen
 import com.fudex.ui.screens.home.HomeScreen
 import com.fudex.ui.screens.orderDetail.OrderDetailScreen
 import com.fudex.ui.screens.orders.OrdersScreen
+import com.fudex.ui.screens.tracking.TrackingScreen
 
 fun NavGraphBuilder.deliveryNavGraph(navController: NavHostController) {
     navigation(
@@ -21,7 +22,8 @@ fun NavGraphBuilder.deliveryNavGraph(navController: NavHostController) {
             //OrdersScreen()
             //HomeScreen("Delivery Home")
             //EditProfileScreen()
-            OrderDetailScreen()
+            //OrderDetailScreen()
+            TrackingScreen()
         }
 
 
