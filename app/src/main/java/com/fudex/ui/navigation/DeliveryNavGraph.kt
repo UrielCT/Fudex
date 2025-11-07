@@ -7,6 +7,7 @@ import androidx.navigation.navigation
 import com.fudex.ui.components.AppScaffold
 import com.fudex.ui.screens.editProfile.EditProfileScreen
 import com.fudex.ui.screens.home.HomeScreen
+import com.fudex.ui.screens.orderDetail.OrderDetailScreen
 import com.fudex.ui.screens.orders.OrdersScreen
 
 fun NavGraphBuilder.deliveryNavGraph(navController: NavHostController) {
@@ -19,7 +20,8 @@ fun NavGraphBuilder.deliveryNavGraph(navController: NavHostController) {
         composable("delivery_home"){
             //OrdersScreen()
             //HomeScreen("Delivery Home")
-            EditProfileScreen()
+            //EditProfileScreen()
+            OrderDetailScreen()
         }
 
 
