@@ -8,6 +8,7 @@ import com.fudex.ui.components.AppScaffold
 import com.fudex.ui.screens.cart.CartScreen
 import com.fudex.ui.screens.directionMap.DirectionMapScreen
 import com.fudex.ui.screens.home.HomeScreen
+import com.fudex.ui.screens.myDirections.MyDirectionsScreen
 import com.fudex.ui.screens.newDirection.NewDirectionScreen
 import com.fudex.ui.screens.paymentConfirm.PaymentConfirmScreen
 import com.fudex.ui.screens.paymentMethod.PaymentMethodScreen
@@ -31,7 +32,8 @@ fun NavGraphBuilder.clientNavGraph(navController: NavHostController) {
             //SelectCuotesScreen()
             //ProductsScreen()
             //ProductDetailScreen()
-            CartScreen()
+            //CartScreen()
+            MyDirectionsScreen()
         }
 
 
