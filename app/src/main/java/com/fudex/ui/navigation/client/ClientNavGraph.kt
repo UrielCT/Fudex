@@ -104,7 +104,6 @@ fun NavGraphBuilder.clientNavGraph(navController: NavHostController) {
             )
         }
 
-
         //PROFILE
         composable(Destination.EDIT_PROFILE.route) {
             EditProfileScreen(

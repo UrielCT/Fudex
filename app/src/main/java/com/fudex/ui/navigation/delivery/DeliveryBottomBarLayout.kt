@@ -8,19 +8,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.fudex.ui.navigation.BottomNavItem
+import com.fudex.ui.navigation.Destination
 import com.fudex.ui.navigation.RoleBottomBar
-import com.fudex.ui.screens.orderDetail.OrderDetailScreen
 import com.fudex.ui.screens.orders.OrdersScreen
 import com.fudex.ui.screens.profile.ProfileScreen
-import com.fudex.ui.screens.tracking.TrackingScreen
-
 
 @Composable
-fun DeliveryBottomBarLayout() {
+fun DeliveryBottomBarLayout(parentNavController: NavHostController) {
     val navController = rememberNavController()
 
     Scaffold(
@@ -40,12 +39,18 @@ fun DeliveryBottomBarLayout() {
             startDestination = "orders",
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable("orders") { OrdersScreen() }
-            composable("profile") { ProfileScreen() }
 
-            // Pantallas fuera del BottomBar
-            composable("tracking") { TrackingScreen() }
-            composable("order_detail") { OrderDetailScreen() }
+
+            composable("orders") {
+                OrdersScreen(
+                    navToOrderDetail = { parentNavController.navigate(Destination.ORDER_DETAIL.route) }
+                )
+            }
+            composable("profile") {
+                ProfileScreen(
+                    navToEditProfile = { parentNavController.navigate(Destination.EDIT_PROFILE.route) }
+                )
+            }
         }
     }
 }

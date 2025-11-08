@@ -1,7 +1,5 @@
 package com.fudex.ui.navigation.client
 
-import android.app.Activity
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -19,7 +17,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -39,7 +36,6 @@ fun ClientBottomBarLayout(parentNavController: NavHostController) {
     val navController = rememberNavController()
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = currentBackStackEntry?.destination?.route
-
 
     Scaffold(
         topBar = {
@@ -97,85 +93,3 @@ fun ClientBottomBarLayout(parentNavController: NavHostController) {
         }
     }
 }
-
-
-//@OptIn(ExperimentalMaterial3Api::class)
-//@Composable
-//fun ClientBottomBarLayout(parentNavController: NavHostController) {
-//    val navController = rememberNavController()
-//
-//    val currentDestination = navController
-//        .currentBackStackEntryAsState()
-//        .value?.destination?.route
-//
-//    val activity = (LocalContext.current as? Activity)
-//
-//    // 🔹 Manejo del botón atrás del sistema
-//    BackHandler(enabled = currentDestination in listOf("home", "orders", "profile")) {
-//        activity?.finish() // salir de la app
-//    }
-//
-//
-//    val showCartIcon = currentDestination == "home"
-//
-//    Scaffold(
-//
-//        topBar = {
-//            if (currentDestination == "home") {
-//                TopAppBar(
-//                    title = { Text("Categorías") },
-//                    actions = {
-//                        IconButton(onClick = { parentNavController.navigate(Destination.CART.route) }) {
-//                            Icon(
-//                                imageVector = Icons.Default.ShoppingCart,
-//                                contentDescription = "Carrito",
-//                                tint = MaterialTheme.colorScheme.onBackground
-//                            )
-//                        }
-//                    },
-//                    colors = TopAppBarDefaults.topAppBarColors(
-//                        containerColor = MaterialTheme.colorScheme.background,
-//                        titleContentColor = MaterialTheme.colorScheme.onBackground
-//                    )
-//                )
-//            }
-//        },
-//
-//        bottomBar = {
-//            RoleBottomBar(
-//                items = listOf(
-//                    BottomNavItem("home", Icons.Default.Home, "Inicio"),
-//                    BottomNavItem("orders", Icons.Default.List, "Pedidos"),
-//                    BottomNavItem("profile", Icons.Default.Person, "Perfil")
-//                ),
-//                navController = navController
-//            )
-//        },
-//        containerColor = MaterialTheme.colorScheme.background
-//    ) { innerPadding ->
-//        NavHost(
-//            navController = navController,
-//            startDestination = "home",
-//            modifier = Modifier.padding(innerPadding)
-//        ) {
-//            //main screens
-//            composable("home") {
-//                HomeScreen(
-//                    navToProducts = { parentNavController.navigate(Destination.PRODUCTS.route) }
-//                    //navToCart = { parentNavController.navigate("cart") }
-//                )
-//            }
-//            composable("orders") {
-//                OrdersScreen(
-//                    navToOrderDetail = { parentNavController.navigate(Destination.ORDER_DETAIL.route) }
-//                )
-//            }
-//            composable("profile") {
-//                ProfileScreen(
-//                    navToEditProfile = { parentNavController.navigate(Destination.EDIT_PROFILE.route) }
-//                )
-//            }
-//
-//        }
-//    }
-//}

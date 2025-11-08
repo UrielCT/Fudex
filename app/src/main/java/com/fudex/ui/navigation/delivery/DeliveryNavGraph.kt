@@ -5,6 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.fudex.ui.navigation.Destination
+import com.fudex.ui.screens.editProfile.EditProfileScreen
+import com.fudex.ui.screens.orderDetail.OrderDetailScreen
 import com.fudex.ui.screens.tracking.TrackingScreen
 
 fun NavGraphBuilder.deliveryNavGraph(navController: NavHostController) {
@@ -14,37 +16,30 @@ fun NavGraphBuilder.deliveryNavGraph(navController: NavHostController) {
     ) {
 
         composable("delivery_root") {
-            DeliveryBottomBarLayout()
+            DeliveryBottomBarLayout(navController)
+        }
+
+        //ORDERS
+        composable(Destination.ORDER_DETAIL.route) {
+            OrderDetailScreen(
+                navToTracking = { navController.navigate(Destination.TRACKING.route) },
+                navBack = {navController.popBackStack()}
+            )
+        }
+
+        composable(Destination.TRACKING.route) {
+            TrackingScreen(
+                navBack = {navController.popBackStack()}
+            )
         }
 
 
-
-
-
-//        composable("delivery_home"){
-//            //OrdersScreen()
-//            //HomeScreen("Delivery Home")
-//            //EditProfileScreen()
-//            //OrderDetailScreen()
-//            TrackingScreen()
-//
-//        }
-
-
-
-//        composable("delivery_home") {
-//            AppScaffold(
-//                topBar = { TopBarSimple(title = "Delivery") },
-//                bottomBar = { DeliveryBottomBar(navController) }
-//            ) {
-//                OrdersScreen()
-//            }
-//        }
-//
-//        composable("profile") { ProfileScreen() }
-//        composable("edit_profile") { EditProfileScreen() }
-//        composable("order_detail") { OrderDetailScreen() }
-//        composable("tracking") { TrackingScreen() }
+        //PROFILE
+        composable(Destination.EDIT_PROFILE.route) {
+            EditProfileScreen(
+                navBack = {navController.popBackStack()}
+            )
+        }
 
     }
 }
