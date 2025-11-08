@@ -1,6 +1,8 @@
 package com.fudex.ui.screens.orders
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,7 +34,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun OrdersScreen(
     modifier: Modifier = Modifier,
-    viewModel: OrdersViewModel = hiltViewModel()
+    viewModel: OrdersViewModel = hiltViewModel(),
+    navToOrderDetail:() -> Unit = {} // enviar id de la orden
 ) {
     //val tabs = listOf("PAGADO", "DESPACHADO", "EN CAMINO", "ENTREGADO")
     val tabs = listOf("PAID", "SENT", "RUNNING", "DELIVERED")
@@ -94,18 +97,29 @@ fun OrdersScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             items(ordersToShow) { order ->
-                OrderCard(order = order)
+                OrderCard(
+                    order = order,
+                    navToOrderDetail = navToOrderDetail
+                )
             }
         }
     }
 }
 
 @Composable
-fun OrderCard(order: String) {
+fun OrderCard(
+    order: String,
+    navToOrderDetail: () -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(100.dp),
+            .height(100.dp)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            ) { navToOrderDetail() }
+        ,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         ),

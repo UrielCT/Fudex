@@ -11,6 +11,27 @@ object Constants {
 
     const val NAV_AUTH_GRAPH = "auth_graph"
     const val NAV_CLIENT_GRAPH = "client_graph"
+    //const val NAV_CLIENT_ROOT = "client_root"
     const val NAV_RESTAURANT_GRAPH = "restaurant_graph"
     const val NAV_DELIVERY_GRAPH = "delivery_graph"
+
+
+    // SECONDARY
+    const val NAV_ORDER_DETAIL = "order_detail"
+    const val NAV_TRACKING = "tracking"
+    const val NAV_CART = "cart"
+    const val NAV_MY_DIRECTIONS = "my_directions"
+    const val NAV_NEW_DIRECTION = "new_direction"
+    const val NAV_DIRECTION_MAP = "direction_map"
+    const val NAV_PAYMENT_METHOD = "payment_method"
+    const val NAV_SELECT_QUOTES = "select_quotes"
+    const val NAV_PAYMENT_CONFIRM = "payment_confirm"
+
+    const val NAV_PRODUCTS = "products"
+    const val NAV_PRODUCT_DETAIL = "product_detail"
+
+    const val NAV_EDIT_PROFILE = "edit_profile"
+
+
+
 }

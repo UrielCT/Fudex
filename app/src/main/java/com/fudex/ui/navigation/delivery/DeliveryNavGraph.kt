@@ -1,31 +1,34 @@
-package com.fudex.ui.navigation
+package com.fudex.ui.navigation.delivery
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.fudex.ui.components.AppScaffold
-import com.fudex.ui.screens.editProfile.EditProfileScreen
-import com.fudex.ui.screens.home.HomeScreen
-import com.fudex.ui.screens.orderDetail.OrderDetailScreen
-import com.fudex.ui.screens.orders.OrdersScreen
+import com.fudex.ui.navigation.Destination
 import com.fudex.ui.screens.tracking.TrackingScreen
 
 fun NavGraphBuilder.deliveryNavGraph(navController: NavHostController) {
     navigation(
-        startDestination = "delivery_home",
+        startDestination = "delivery_root",
         route = Destination.DELIVERY_GRAPH.route
     ) {
 
-
-        composable("delivery_home"){
-            //OrdersScreen()
-            //HomeScreen("Delivery Home")
-            //EditProfileScreen()
-            //OrderDetailScreen()
-            TrackingScreen()
-
+        composable("delivery_root") {
+            DeliveryBottomBarLayout()
         }
+
+
+
+
+
+//        composable("delivery_home"){
+//            //OrdersScreen()
+//            //HomeScreen("Delivery Home")
+//            //EditProfileScreen()
+//            //OrderDetailScreen()
+//            TrackingScreen()
+//
+//        }
 
 
 

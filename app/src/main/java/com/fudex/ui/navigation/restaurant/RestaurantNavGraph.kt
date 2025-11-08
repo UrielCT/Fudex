@@ -1,33 +1,31 @@
-package com.fudex.ui.navigation
+package com.fudex.ui.navigation.restaurant
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.fudex.ui.components.AppScaffold
-import com.fudex.ui.screens.addEditCategory.AddEditCategoryScreen
+import com.fudex.ui.navigation.Destination
+import com.fudex.ui.navigation.client.ClientBottomBarLayout
 import com.fudex.ui.screens.addEditProduct.AddEditProductScreen
-import com.fudex.ui.screens.home.HomeScreen
-import com.fudex.ui.screens.myProductDetail.MyProductDetailScreen
-import com.fudex.ui.screens.myProducts.MyProductsScreen
-import com.fudex.ui.screens.mycategories.MyCategoriesScreen
-import com.fudex.ui.screens.profile.ProfileScreen
 
 fun NavGraphBuilder.restaurantNavGraph(navController: NavHostController) {
     navigation(
-        startDestination = "restaurant_home",
+        startDestination = "restaurant_root",
         route = Destination.RESTAURANT_GRAPH.route
     ) {
 
-        composable("restaurant_home"){
-            //HomeScreen("Restaurant Home")
-            //ProfileScreen()
-            //MyCategoriesScreen()
-            //AddEditCategoryScreen()
-            //MyProductsScreen()
-            //MyProductDetailScreen()
-            AddEditProductScreen()
+        composable("restaurant_root") {
+            RestaurantBottomBarLayout()
         }
+
+//        composable("restaurant_home"){
+//            //ProfileScreen()
+//            //MyCategoriesScreen()
+//            //AddEditCategoryScreen()
+//            //MyProductsScreen()
+//            //MyProductDetailScreen()
+//            AddEditProductScreen()
+//        }
 
 
 //        composable("restaurant_home") {

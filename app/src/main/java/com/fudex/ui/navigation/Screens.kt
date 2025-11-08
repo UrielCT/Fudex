@@ -14,14 +14,35 @@ enum class Destination(
     LOGIN(route = Constants.NAV_LOGIN),
     REGISTER(route = Constants.NAV_REGISTER),
     ROLES(route = Constants.NAV_ROLES),
+
+
     HOME(route = Constants.NAV_HOME),
     ORDERS(route = Constants.NAV_ORDERS),
 
     //ROLES
-
     AUTH_GRAPH(route = Constants.NAV_AUTH_GRAPH),
     CLIENT_GRAPH(route = Constants.NAV_CLIENT_GRAPH),
+    //CLIENT_ROOT(route = Constants.NAV_CLIENT_ROOT),
     RESTAURANT_GRAPH(route = Constants.NAV_RESTAURANT_GRAPH),
-    DELIVERY_GRAPH(route = Constants.NAV_DELIVERY_GRAPH)
+    DELIVERY_GRAPH(route = Constants.NAV_DELIVERY_GRAPH),
+
+    //Secondary screens
+    ORDER_DETAIL(route = Constants.NAV_ORDER_DETAIL),
+    TRACKING(route = Constants.NAV_TRACKING),
+    CART(route = Constants.NAV_CART),
+    MY_DIRECTIONS(route = Constants.NAV_MY_DIRECTIONS),
+    NEW_DIRECTION(route = Constants.NAV_NEW_DIRECTION),
+    DIRECTION_MAP(route = Constants.NAV_DIRECTION_MAP),
+    PAYMENT_METHOD(route = Constants.NAV_PAYMENT_METHOD),
+    SELECT_QUOTES(route = Constants.NAV_SELECT_QUOTES),
+    PAYMENT_CONFIRM(route = Constants.NAV_PAYMENT_CONFIRM),
+
+    PRODUCTS(route = Constants.NAV_PRODUCTS),
+    PRODUCT_DETAIL(route = Constants.NAV_PRODUCT_DETAIL),
+
+    EDIT_PROFILE(route = Constants.NAV_EDIT_PROFILE),
+
+
+
 
 }

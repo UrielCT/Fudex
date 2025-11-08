@@ -7,17 +7,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.unit.Constraints
 import androidx.navigation.compose.rememberNavController
 import com.fudex.ui.navigation.Destination
 import com.fudex.ui.navigation.MainNavGraph
-import com.fudex.ui.screens.login.LoginScreen
-import com.fudex.ui.screens.register.RegisterScreen
-import com.fudex.ui.screens.roles.RolesScreen
 import com.fudex.ui.theme.FudexTheme
 import com.fudex.ui.theme.LocalFontScale
 import com.fudex.ui.theme.LocalPaddingScale
-import com.fudex.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,19 +42,6 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         startDestination = startDestination
                     )
-
-//                    LoginScreen(
-//                        navToHome = {},
-//                        navToRegister = {}
-//                    )
-//                    RegisterScreen (
-//                        navToHome = {},
-//                        navToLogin = {}
-//                    )
-//                    RolesScreen (
-//                        navToOrders = {}
-//                    )
-                    //NavigationBarScreen()
                 }
             }
         }

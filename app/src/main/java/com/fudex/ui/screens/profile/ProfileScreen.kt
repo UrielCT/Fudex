@@ -51,7 +51,7 @@ fun ProfileScreen(
     userEmail: String = "juanperez@example.com",
     userPhone: String = "+54 11 2345-6789",
     userImage: Int = R.drawable.user_icon,
-    onEditProfile: () -> Unit = {},
+    navToEditProfile: () -> Unit = {},
     onSelectRole: () -> Unit = {},
     onLogout: () -> Unit = {}
 ) {
@@ -181,7 +181,7 @@ fun ProfileScreen(
                 }
 
                 OutlinedButton(
-                    onClick = onEditProfile,
+                    onClick = navToEditProfile,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     colors = ButtonDefaults.outlinedButtonColors(

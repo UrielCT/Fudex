@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircleOutline
@@ -33,7 +35,9 @@ fun PaymentConfirmScreen(
     paymentMethod: String = "PayPal",
     amount: Double = 2500.0,
     onConfirm: () -> Unit = {},
-    onCancel: () -> Unit = {}
+    onCancel: () -> Unit = {},
+    navBackToHome: () -> Unit = {},
+
 ) {
     val background = MaterialTheme.colorScheme.background
     val onBackground = MaterialTheme.colorScheme.onBackground
@@ -44,7 +48,8 @@ fun PaymentConfirmScreen(
         modifier = modifier
             .fillMaxSize()
             .background(background)
-            .padding(24.dp),
+            .statusBarsPadding()
+            .navigationBarsPadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -86,8 +91,9 @@ fun PaymentConfirmScreen(
 
         // Botón continuar
         Button(
-            onClick = {},
+            onClick = { navBackToHome() },
             modifier = Modifier
+                .padding(16.dp)
                 .fillMaxWidth(0.8f)
                 .height(56.dp),
             shape = RoundedCornerShape(12.dp),

@@ -19,6 +19,7 @@ hiltAndroidCompiler = "2.48"
 hiltNavigationCompose = "1.1.0"
 
 exifinterface = "1.4.1"
+foundationLayoutAndroid = "1.7.3"
 
 [libraries]
 # Core
@@ -55,6 +56,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroid" }
 
 
 [plugins]

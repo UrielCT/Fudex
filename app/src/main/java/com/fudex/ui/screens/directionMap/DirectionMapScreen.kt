@@ -4,7 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -19,18 +21,21 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun DirectionMapScreen(
     modifier: Modifier = Modifier,
-    viewModel: DirectionMapViewModel = hiltViewModel()
+    viewModel: DirectionMapViewModel = hiltViewModel(),
+    navBack:()-> Unit = {},
 ) {
 
     Box(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp),
+            .padding(16.dp)
+            .statusBarsPadding()
+            .navigationBarsPadding(),
         contentAlignment = Alignment.BottomCenter
     ) {
         Button(
-            onClick = {},
+            onClick = { navBack() },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primary

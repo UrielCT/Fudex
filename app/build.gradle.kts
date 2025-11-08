@@ -63,6 +63,7 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.foundation.layout.android)
     kapt(libs.hilt.compiler)
     kapt (libs.hilt.android.compiler)
 

@@ -40,9 +40,10 @@ data class Category(
 
 @Composable
 fun HomeScreen(
-    text: String,
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = hiltViewModel()
+    text: String = "",
+    viewModel: HomeViewModel = hiltViewModel(),
+    navToProducts: () -> Unit = {}
 ) {
     val categories = listOf(
         Category(image = R.drawable.hamburguesa, title = "Bebidas"),
@@ -61,14 +62,20 @@ fun HomeScreen(
         contentPadding = PaddingValues(16.dp)
     ) {
         items(categories) { category ->
-            CategoryCard(category = category)
+            CategoryCard(
+                category = category,
+                navToProducts = navToProducts
+            )
         }
     }
 }
 
 
 @Composable
-fun CategoryCard(category: Category) {
+fun CategoryCard(
+    category: Category,
+    navToProducts: () -> Unit = {}
+) {
     val isDark = isSystemInDarkTheme()
 
     Card(
@@ -79,7 +86,7 @@ fun CategoryCard(category: Category) {
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null
-            ) { },
+            ) { navToProducts() },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),

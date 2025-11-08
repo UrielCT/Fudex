@@ -11,11 +11,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -35,10 +45,13 @@ import com.fudex.R
 import com.fudex.ui.screens.roles.RoleCard
 import kotlinx.coroutines.delay
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PaymentMethodScreen(
     modifier: Modifier = Modifier,
     viewModel: PaymentMethodViewModel = hiltViewModel(),
+    navToSelectQuotes: () -> Unit = {},
+    navBack: () -> Unit = {},
     onSelectPayment: (String) -> Unit = {}
 ) {
     val backgroundColor = MaterialTheme.colorScheme.background
@@ -48,14 +61,35 @@ fun PaymentMethodScreen(
         modifier = modifier
             .fillMaxSize()
             .background(backgroundColor)
-            .padding(24.dp),
+            .statusBarsPadding()
+            .navigationBarsPadding(),
+            //.padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        //verticalArrangement = Arrangement.Center
     ) {
+
+        TopAppBar(
+            title = { Text("Payment Methods") },
+            navigationIcon = {
+                IconButton(onClick = { navBack() }) {
+                    Icon(Icons.Default.ArrowBack, contentDescription = "Atrás")
+                }
+            },
+            colors = TopAppBarDefaults.smallTopAppBarColors(
+                containerColor = MaterialTheme.colorScheme.surface,
+                titleContentColor = MaterialTheme.colorScheme.onSurface
+            )
+        )
+
+        Spacer(modifier = Modifier.weight(1f))
+
         PaymentOptionItem(
             imageRes = R.drawable.paypal,
             name = "PayPal",
-            onClick = { onSelectPayment("PayPal") }
+            onClick = {
+                navToSelectQuotes()
+            //    onSelectPayment("PayPal")
+            }
         )
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -63,8 +97,14 @@ fun PaymentMethodScreen(
         PaymentOptionItem(
             imageRes = R.drawable.mercadopago,
             name = "Mercado Pago",
-            onClick = { onSelectPayment("MercadoPago") }
+            onClick = {
+                navToSelectQuotes()
+                //onSelectPayment("MercadoPago")
+            }
         )
+
+        Spacer(modifier = Modifier.weight(1f))
+
     }
 }
 
@@ -96,6 +136,7 @@ fun PaymentOptionItem(
                 interactionSource = interactionSource,
                 indication = rememberRipple(color = MaterialTheme.colorScheme.primary)
             ) {
+                onClick()
 //                pressed = true
 //                onClick()
 //

@@ -6,25 +6,33 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,10 +51,15 @@ data class Direction(
     val location: String
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyDirectionsScreen(
     modifier: Modifier = Modifier,
-    viewModel: MyDirectionsViewModel = hiltViewModel()
+    viewModel: MyDirectionsViewModel = hiltViewModel(),
+    navToNewDirection:()-> Unit = {},
+    navToPaymentMethod:()-> Unit = {},
+    navBack:()-> Unit = {},
+
 ) {
     val directions = listOf(
         Direction(street = "Av. Corrientes 2450", location = "Buenos Aires"),
@@ -61,24 +74,46 @@ fun MyDirectionsScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp)
+
+            //.padding(16.dp)
     ) {
+
+
+
+
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().statusBarsPadding()
+                .navigationBarsPadding(),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
+
+            TopAppBar(
+                title = { Text("My Directions") },
+                navigationIcon = {
+                    IconButton(onClick = { navBack() }) {
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Atrás")
+                    }
+                },
+                colors = TopAppBarDefaults.smallTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.surface,
+                    titleContentColor = MaterialTheme.colorScheme.onSurface
+                )
+            )
+
+
             Text(
                 text = "Elegir punto de entrega",
                 style = MaterialTheme.typography.titleLarge.copy(fontSize = 22.sp),
                 color = MaterialTheme.colorScheme.onBackground,
-                modifier = Modifier.padding(vertical = 8.dp)
+                modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
             )
 
             LazyColumn(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(16.dp)
             ) {
                 items(directions) { direction ->
                     DirectionItem(
@@ -91,10 +126,11 @@ fun MyDirectionsScreen(
             }
 
             Button(
-                onClick = {  },
+                onClick = { navToPaymentMethod() },
                 modifier = Modifier
+                    .padding( 16.dp)
                     .fillMaxWidth()
-                    .padding(top = 16.dp),
+                    ,
                 shape = RoundedCornerShape(12.dp),
                 enabled = selectedDirection != null
             ) {
@@ -103,12 +139,12 @@ fun MyDirectionsScreen(
         }
 
         FloatingActionButton(
-            onClick = { },
+            onClick = { navToNewDirection() },
             containerColor = MaterialTheme.colorScheme.primary,
             contentColor = MaterialTheme.colorScheme.onPrimary,
             modifier = Modifier
                 .align(Alignment.BottomEnd)
-                .padding(bottom = 90.dp, end = 8.dp)
+                .padding(bottom = 120.dp, end = 16.dp)
         ) {
             Icon(
                 imageVector = Icons.Default.Add,

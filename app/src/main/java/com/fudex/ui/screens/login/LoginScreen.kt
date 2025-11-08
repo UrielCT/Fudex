@@ -43,6 +43,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.fudex.ui.navigation.Destination
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -141,7 +142,7 @@ fun LoginScreen(
 
             // Botón de Login
             Button(
-                onClick = { navToHome("Restaurant") },
+                onClick = { navToHome(Destination.CLIENT_GRAPH.route) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),

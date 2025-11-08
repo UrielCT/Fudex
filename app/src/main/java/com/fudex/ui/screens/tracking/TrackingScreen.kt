@@ -11,8 +11,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -42,8 +44,8 @@ import com.fudex.R
 fun TrackingScreen(
     modifier: Modifier = Modifier,
     viewModel: TrackingViewModel = hiltViewModel(),
-    onBack: () -> Unit = {},
-    onDeliver: () -> Unit = {}
+    navBack: () -> Unit = {},
+    onDeliver: () -> Unit = {},
 ) {
     val background = MaterialTheme.colorScheme.background
     val surface = MaterialTheme.colorScheme.surface
@@ -54,8 +56,9 @@ fun TrackingScreen(
         modifier = modifier
             .fillMaxSize()
             .background(background)
+            .statusBarsPadding()
+            .navigationBarsPadding()
     ) {
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -72,7 +75,7 @@ fun TrackingScreen(
 
             // Botón de volver
             IconButton(
-                onClick = onBack,
+                onClick = navBack,
                 modifier = Modifier
                     .padding(16.dp)
                     .background(
