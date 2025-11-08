@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -44,6 +46,7 @@ fun MyProductDetailScreen(
         R.drawable.hamburguesa,
         R.drawable.hamburguesa,
         R.drawable.hamburguesa),
+    navToAddEditProduct: () -> Unit = {},
     navBack: () -> Unit = {}
 ) {
     val context = LocalContext.current
@@ -52,6 +55,8 @@ fun MyProductDetailScreen(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
+            .statusBarsPadding()
+            .navigationBarsPadding()
     ) {
         val screenWidth = maxWidth
         val coverHeight = screenWidth * 0.55f
@@ -99,7 +104,7 @@ fun MyProductDetailScreen(
 
 
             IconButton(
-                onClick = {  },
+                onClick = { navToAddEditProduct() },
                 modifier = Modifier
                     .constrainAs(btnEdit) {
                         top.linkTo(parent.top, 16.dp)

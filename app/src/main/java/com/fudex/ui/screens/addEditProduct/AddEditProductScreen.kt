@@ -10,11 +10,15 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -24,9 +28,13 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -48,7 +56,9 @@ import com.fudex.R
 fun AddEditProductScreen(
     modifier: Modifier = Modifier,
     viewModel: AddEditProductViewModel = hiltViewModel(),
-    onSave: () -> Unit = {}
+    onSave: () -> Unit = {},
+    navBack: () -> Unit = {},
+
 ) {
     val backgroundColor = MaterialTheme.colorScheme.background
     val onBackgroundColor = MaterialTheme.colorScheme.onBackground
@@ -76,14 +86,31 @@ fun AddEditProductScreen(
         modifier = modifier
             .fillMaxSize()
             .background(backgroundColor)
-            .padding(24.dp),
+            .statusBarsPadding()
+            .navigationBarsPadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
 
+        TopAppBar(
+            title = { Text("Edit Product") },
+            navigationIcon = {
+                IconButton(onClick = { navBack() }) {
+                    Icon(Icons.Default.ArrowBack, contentDescription = "Atrás")
+                }
+            },
+            colors = TopAppBarDefaults.smallTopAppBarColors(
+                containerColor = MaterialTheme.colorScheme.surface,
+                titleContentColor = MaterialTheme.colorScheme.onSurface
+            )
+        )
+
+
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
         ) {
             items(sampleImages.size) { index ->
                 val image = sampleImages[index]
@@ -114,89 +141,93 @@ fun AddEditProductScreen(
             }
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Column(modifier = Modifier.padding(16.dp).fillMaxWidth()) {
+            Spacer(modifier = Modifier.height(24.dp))
 
-        OutlinedTextField(
-            value = name,
-            onValueChange = { name = it },
-            label = { Text("Nombre del producto") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OutlinedTextField(
-            value = description,
-            onValueChange = { description = it },
-            label = { Text("Descripción del producto") },
-            modifier = Modifier.fillMaxWidth(),
-            maxLines = 3
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OutlinedTextField(
-            value = price,
-            onValueChange = { price = it },
-            label = { Text("Precio del producto") },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        ExposedDropdownMenuBox(
-            expanded = expanded,
-            onExpandedChange = { expanded = !expanded }
-        ) {
             OutlinedTextField(
-                value = selectedCategory,
-                onValueChange = {},
-                label = { Text("Categoría") },
-                readOnly = true,
-                trailingIcon = {
-                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
-                },
-                modifier = Modifier
-                    .menuAnchor()
-                    .fillMaxWidth()
+                value = name,
+                onValueChange = { name = it },
+                label = { Text("Nombre del producto") },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth()
             )
 
-            ExposedDropdownMenu(
+            Spacer(modifier = Modifier.height(16.dp))
+
+            OutlinedTextField(
+                value = description,
+                onValueChange = { description = it },
+                label = { Text("Descripción del producto") },
+                modifier = Modifier.fillMaxWidth(),
+                maxLines = 3
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            OutlinedTextField(
+                value = price,
+                onValueChange = { price = it },
+                label = { Text("Precio del producto") },
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            ExposedDropdownMenuBox(
                 expanded = expanded,
-                onDismissRequest = { expanded = false }
+                onExpandedChange = { expanded = !expanded }
             ) {
-                categories.forEach { category ->
-                    DropdownMenuItem(
-                        text = { Text(category) },
-                        onClick = {
-                            selectedCategory = category
-                            expanded = false
-                        }
-                    )
+                OutlinedTextField(
+                    value = selectedCategory,
+                    onValueChange = {},
+                    label = { Text("Categoría") },
+                    readOnly = true,
+                    trailingIcon = {
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                    },
+                    modifier = Modifier
+                        .menuAnchor()
+                        .fillMaxWidth()
+                )
+
+                ExposedDropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false }
+                ) {
+                    categories.forEach { category ->
+                        DropdownMenuItem(
+                            text = { Text(category) },
+                            onClick = {
+                                selectedCategory = category
+                                expanded = false
+                            }
+                        )
+                    }
                 }
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Button(
+                onClick = onSave,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp),
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = primaryColor,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            ) {
+                Text(
+                    text = "Guardar producto",
+                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
+                )
             }
         }
 
-        Spacer(modifier = Modifier.weight(1f))
 
-        Button(
-            onClick = onSave,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-            shape = RoundedCornerShape(12.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = primaryColor,
-                contentColor = MaterialTheme.colorScheme.onPrimary
-            )
-        ) {
-            Text(
-                text = "Guardar producto",
-                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
-            )
-        }
     }
 }

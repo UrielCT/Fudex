@@ -38,7 +38,9 @@ import com.fudex.R
 @Composable
 fun MyProductsScreen(
     modifier: Modifier = Modifier,
-    viewModel: MyProductsViewModel = hiltViewModel()
+    viewModel: MyProductsViewModel = hiltViewModel(),
+    navToMyProductDetail:() -> Unit = {},
+    navToAddProduct:() -> Unit = {},
 ) {
     val background = MaterialTheme.colorScheme.background
     val products = listOf(
@@ -64,7 +66,10 @@ Box(modifier = modifier.fillMaxSize()){
         contentPadding = PaddingValues(vertical = 40.dp, horizontal = 12.dp)
     ) {
         items(products) { product ->
-            ProductCard(product = product)
+            ProductCard(
+                product = product,
+                navToMyProductDetail = navToMyProductDetail
+            )
         }
     }
 }
@@ -81,7 +86,8 @@ data class Product(
 @Composable
 fun ProductCard(
     product: Product,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navToMyProductDetail:() -> Unit = {}
 ) {
     val surface = MaterialTheme.colorScheme.surface
     val onSurface = MaterialTheme.colorScheme.onSurface
@@ -94,7 +100,7 @@ fun ProductCard(
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(bounded = true)
-            ) { },
+            ) { navToMyProductDetail() },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(containerColor = surface)
     ) {

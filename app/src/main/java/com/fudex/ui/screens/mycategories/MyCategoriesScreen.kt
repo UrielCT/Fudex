@@ -41,9 +41,10 @@ data class Category(
 
 @Composable
 fun MyCategoriesScreen(
-
     modifier: Modifier = Modifier,
-    viewModel: MyCategoriesViewModel = hiltViewModel()
+    viewModel: MyCategoriesViewModel = hiltViewModel(),
+    navToEditCategory:() -> Unit = {},
+    navToAddCategory:() -> Unit = {},
 ) {
     val categories = listOf(
         Category(image = R.drawable.hamburguesa, title = "Bebidas"),
@@ -62,14 +63,21 @@ fun MyCategoriesScreen(
         contentPadding = PaddingValues(16.dp)
     ) {
         items(categories) { category ->
-            CategoryCard(category = category)
+            CategoryCard(
+                category = category,
+                navToEditCategory = navToEditCategory,
+            )
         }
     }
 }
 
 
 @Composable
-fun CategoryCard(category: Category) {
+fun CategoryCard(
+    category: Category,
+    navToEditCategory:() -> Unit
+    ,
+) {
     val isDark = isSystemInDarkTheme()
 
     Card(
@@ -80,7 +88,7 @@ fun CategoryCard(category: Category) {
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null
-            ) { },
+            ) { navToEditCategory() },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),

@@ -79,7 +79,6 @@ fun CartScreen(
             .background(background)
             .statusBarsPadding()
             .navigationBarsPadding()
-            //.padding(16.dp)
     ) {
 
         TopAppBar(

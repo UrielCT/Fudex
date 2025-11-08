@@ -43,6 +43,10 @@ enum class Destination(
     EDIT_PROFILE(route = Constants.NAV_EDIT_PROFILE),
 
 
+    ADD_EDIT_CATEGORIES(route = Constants.NAV_ADD_EDIT_CATEGORIES),
+    ADD_EDIT_PRODUCT(route = Constants.NAV_ADD_EDIT_PRODUCT),
+    MY_PRODUCT_DETAIL(route = Constants.NAV_MY_PRODUCT_DETAIL),
+
 
 
 }

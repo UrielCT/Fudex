@@ -6,6 +6,9 @@ object Constants {
     const val NAV_ROLES = "roles"
     const val NAV_HOME = "home"
     const val NAV_ORDERS = "orders"
+    const val NAV_PROFILE = "profile"
+    const val NAV_MY_CATEGORIES = "my_categories"
+    const val NAV_MY_PRODUCTS = "my_products"
 
 
 
@@ -31,6 +34,11 @@ object Constants {
     const val NAV_PRODUCT_DETAIL = "product_detail"
 
     const val NAV_EDIT_PROFILE = "edit_profile"
+
+    const val NAV_ADD_EDIT_CATEGORIES = "add_edit_categories"
+    const val NAV_ADD_EDIT_PRODUCT = "add_edit_product"
+    const val NAV_MY_PRODUCT_DETAIL = "my_product_detail"
+
 
 
 

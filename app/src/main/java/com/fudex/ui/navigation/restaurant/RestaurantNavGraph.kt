@@ -5,8 +5,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.fudex.ui.navigation.Destination
-import com.fudex.ui.navigation.client.ClientBottomBarLayout
+import com.fudex.ui.screens.addEditCategory.AddEditCategoryScreen
 import com.fudex.ui.screens.addEditProduct.AddEditProductScreen
+import com.fudex.ui.screens.editProfile.EditProfileScreen
+import com.fudex.ui.screens.myProductDetail.MyProductDetailScreen
+import com.fudex.ui.screens.orderDetail.OrderDetailScreen
 
 fun NavGraphBuilder.restaurantNavGraph(navController: NavHostController) {
     navigation(
@@ -15,35 +18,46 @@ fun NavGraphBuilder.restaurantNavGraph(navController: NavHostController) {
     ) {
 
         composable("restaurant_root") {
-            RestaurantBottomBarLayout()
+            RestaurantBottomBarLayout(navController)
         }
 
-//        composable("restaurant_home"){
-//            //ProfileScreen()
-//            //MyCategoriesScreen()
-//            //AddEditCategoryScreen()
-//            //MyProductsScreen()
-//            //MyProductDetailScreen()
-//            AddEditProductScreen()
-//        }
+        //MY CATEGORIES
+        composable(Destination.ADD_EDIT_CATEGORIES.route) {
+            AddEditCategoryScreen(
+                //navToTracking = { navController.navigate(Destination.TRACKING.route) },
+                navBack = {navController.popBackStack()}
+            )
+        }
+
+        //MY PRODUCTS
+        composable(Destination.MY_PRODUCT_DETAIL.route) {
+            MyProductDetailScreen(
+                navToAddEditProduct = { navController.navigate(Destination.ADD_EDIT_PRODUCT.route) },
+                navBack = {navController.popBackStack()}
+            )
+        }
+
+        composable(Destination.ADD_EDIT_PRODUCT.route) {
+            AddEditProductScreen(
+                navBack = {navController.popBackStack()}
+            )
+        }
+
+        //ORDERS
+        composable(Destination.ORDER_DETAIL.route) {
+            OrderDetailScreen(
+                //navToTracking = { navController.navigate(Destination.TRACKING.route) },
+                navBack = {navController.popBackStack()}
+            )
+        }
 
 
-//        composable("restaurant_home") {
-//            AppScaffold(
-//                topBar = { TopBarSimple(title = "Restaurant") },
-//                bottomBar = { RestaurantBottomBar(navController) }
-//            ) {
-//                OrdersScreen()
-//            }
-//        }
-//
-//
-//        composable("profile") { ProfileScreen() }
-//        composable("edit_profile") { EditProfileScreen() }
-//        composable("products") { ProductsScreen() }
-//        composable("add_product") { AddProductScreen() }
-//        composable("categories") { CategoryScreen() }
-//        composable("add_category") { AddCategoryScreen() }
+        //PROFILE
+        composable(Destination.EDIT_PROFILE.route) {
+            EditProfileScreen(
+                navBack = {navController.popBackStack()}
+            )
+        }
 
     }
 }
